@@ -8,12 +8,17 @@ function App() {
 
   const adminUser = [
       {email:'admin@test.com',
-      password: 'admin'}
+      password: 'admin'},
+      {email:'staff@test.com',
+      password: 'staff'},
+      {email:'doctor@test.com',
+      password: 'doctor'},
+
   ]
 
   const [user, setUser] = useState({email: '',password: ''});
   const [error, setError] = useState("");
-  var userId = null;
+  var userId = undefined;
 
   const Login= details =>{
     
@@ -25,8 +30,8 @@ function App() {
     }
 
     //if(details.email === adminUser.email && details.password === adminUser.password){
-    if(false){
-      console.log('logged in!')
+    if(userId === 0 || userId === 1 || userId === 2){
+      console.log(userId)
       setUser({
         email:adminUser[userId].email,
         password: adminUser[userId].password
@@ -48,6 +53,7 @@ function App() {
       email:'',
       password: ''
     })
+    userId= null;
   }
 
   return (

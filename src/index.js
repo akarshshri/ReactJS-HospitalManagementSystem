@@ -4,10 +4,13 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.css'
+import NavBar from './components/NavBar';
+
 //import Counter from './components/counter'
 
 ReactDOM.render(
   <React.StrictMode>
+    <NavBar />
     <App />
   </React.StrictMode>,
   document.getElementById('root')

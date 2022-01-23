@@ -9,14 +9,16 @@ function LoginForm({Login , error}) {
     }
 
   return <div className='container'>
-      <form onSubmit={submitHandler}>
+      <form className='d-flex m-auto' onSubmit={submitHandler} style={{ width:'70%'}}>
+          <div className="col">
           <h2>Login</h2>
-          <div className="my-2" style={{boxSizing: 'border-box'}}>
-          <input  type="email" name="email" id="email" placeholder='Email' onChange={(e) => setDetails({...details, email: e.target.value})} value={details.email} /><br />
+          <div className="" style={{boxSizing: 'border-box'}}>
+          <input className='form-control' type="email" name="email" id="email" placeholder='Email' onChange={(e) => setDetails({...details, email: e.target.value})} value={details.email} /><br />
           </div>
-          <div className="my-2">
-          <input type="password" id='password' placeholder='Password' onChange={(e) => setDetails({...details, password: e.target.value})} value={details.password} /><br /><br />
-          <input type="submit" value="Submit" />
+          <div className="">
+          <input className='form-control' type="password" id='password' placeholder='Password' onChange={(e) => setDetails({...details, password: e.target.value})} value={details.password} /><br />
+          <input className='btn btn-primary' type="submit" value="Submit" />
+          </div>
           </div>
       </form>
   </div>;
