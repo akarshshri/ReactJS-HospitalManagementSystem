@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 function AdminDash() {
   var loopCount = 0;
@@ -21,40 +21,34 @@ function AdminDash() {
     updateDoc();
   }
 
-
-
- function updateDoc2(){
-    
-    
-      // var docinfo = document.getElementById('doctorinfo')
-      // if (localStorage.getItem('doctorinfo').length !== 0) {
-      //   var arr2 = JSON.parse(localStorage.getItem('doctorinfo'))
-      //   if (loopCount === 0) {
-        console.log(loopCount)
-        //arr2.map(e => (
-          // docinfo.innerHTML += arr2.name + '</br>'
-        //))
-        // loopCount++;
-    //   }
-    // }
+  function updateDoc() {
+    let s = '';
+    var docinfo = document.getElementById('tableBody')
+    if (localStorage.getItem('doctorinfo').length !== 0) {
+      var arr2 = JSON.parse(localStorage.getItem('doctorinfo'))
+      arr2.map(e => (
+        s += `<tr>
+        <th scope="row">${e.name}</th>
+        <td>${e.speciality}</td>
+         </tr>`
+      ))
+      console.log(arr2[0].name)
+      docinfo.innerHTML = s;
+    }
   }
 
-  setTimeout(() => {
-    updateDoc2()
-   }, 10000);
+  useEffect(() => {
+    updateDoc()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
-  function updateDoc(){
-
-  }
-  //updateDoc()
 
   return <div>
     <div className="container my-4">
       <div className="row">
         <div className="col">
           <button className="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop1" >Create Doctor</button>
-          <div id='doctorinfo'>
-          </div>
+
         </div>
         <div className="col">
           <button className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop2">Create Branch</button>
@@ -65,6 +59,25 @@ function AdminDash() {
       </div>
     </div>
 
+
+    <div className='container d-flex row m-auto' id='doctorinfo'>
+      <h3>Doctor's Info</h3>
+      <table class="table"  >
+        <thead>
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Speciality</th>
+          </tr>
+        </thead>
+        <tbody id="tableBody">
+          <tr>
+            <th scope="row">1</th>
+            <td>Get some Coffee</td>
+            <td><button class="btn btn-sm btn-primary" >Delete</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
     <div className="modal fade" id="staticBackdrop1" data-bs-backdrop="static" data-bs-keyboard="false" tabIndex="-1" aria-labelledby="staticBackdropLabel1" aria-hidden="true">
       <div className="modal-dialog">
         <div className="modal-content">
