@@ -2,6 +2,7 @@ import { useState } from 'react';
 //import DoctorDash from './components/doctorDash'
 import LoginForm from './components/LoginForm'
 import './App.css';
+import LoggedIn from './components/LoggedIn';
 
 
 function App() {
@@ -17,24 +18,28 @@ function App() {
   ]
 
   const [user, setUser] = useState({email: '',password: ''});
-  const [error, setError] = useState("");
-  var userId = undefined;
+ // const [error, setError] = useState("");
+  const [userId, setuserId] = useState(undefined);
+  var temp;
+  //var userId = undefined;
 
   const Login= details =>{
     
     for(var i = 0; i<adminUser.length;i++){
       if(adminUser[i].email === details.email && adminUser[i].password === details.password){
-        userId = i;
-        console.log('Value of I ', i)
+        temp = i
+        setuserId(temp);
       }
     }
+    
+    //console.log(userId);
 
     //if(details.email === adminUser.email && details.password === adminUser.password){
-    if(userId === 0 || userId === 1 || userId === 2){
-      console.log(userId)
+    if(temp === 0 || temp === 1 || temp === 2){
+      //console.log(userId)
       setUser({
-        email:adminUser[userId].email,
-        password: adminUser[userId].password
+        email:adminUser[temp].email,
+        password: adminUser[temp].password
       })
     }else{
       document.getElementById('password').classList.add('error');
@@ -53,18 +58,15 @@ function App() {
       email:'',
       password: ''
     })
-    userId= null;
+    setuserId(undefined);
   }
 
   return (
     <div className="App">
       {(user.email !== '')?(
-        <div className="welcome">
-          <h2>Welcome, <span>{user.email}</span></h2>
-          <button className='btn btn-secondary' onClick={Logout}>Logout</button>
-        </div>
+        <LoggedIn Logout = {Logout} user= {user} userId={userId} />
       ): (
-        <LoginForm Login={Login} error={error}/>
+        <LoginForm Login={Login}/>
       )}
     </div>
   );

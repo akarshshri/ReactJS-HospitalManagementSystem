@@ -5,6 +5,7 @@ function LoginForm({Login , error}) {
 
     const submitHandler = e=>{
         e.preventDefault();
+        document.getElementById('submit').click();
         Login(details)
     }
 
@@ -17,7 +18,7 @@ function LoginForm({Login , error}) {
           </div>
           <div className="">
           <input className='form-control' type="password" id='password' placeholder='Password' onChange={(e) => setDetails({...details, password: e.target.value})} value={details.password} /><br />
-          <input className='btn btn-primary' type="submit" value="Submit" />
+          <input className='btn btn-primary' type="submit" value="Submit" id='submit'/>
           </div>
           </div>
       </form>
