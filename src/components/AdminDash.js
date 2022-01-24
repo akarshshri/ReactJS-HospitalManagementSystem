@@ -1,11 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 
 function AdminDash() {
-  var loopCount = 0;
   var arr = [{
     name: 'Nikhil',
     speciality: 'NPH'
   }]
+
+
+  var branch = ['Oncology','CVRM'];
 
   //localStorage.setItem('doctorinfo',JSON.stringify(arr))
 
@@ -32,13 +34,26 @@ function AdminDash() {
         <td>${e.speciality}</td>
          </tr>`
       ))
-      console.log(arr2[0].name)
+      //console.log(arr2[0].name)
       docinfo.innerHTML = s;
     }
+    document.getElementById('close1').click();
+  }
+
+  const branchUpdate = ()=>{
+    let s = '';
+    branch.map(e => (
+      s += `
+      <option value="${e}">${e}</option>
+      `
+      ))
+      console.log(s)
+    document.getElementById('branch').innerHTML = s;
   }
 
   useEffect(() => {
     updateDoc()
+    branchUpdate()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -62,7 +77,7 @@ function AdminDash() {
 
     <div className='container d-flex row m-auto' id='doctorinfo'>
       <h3>Doctor's Info</h3>
-      <table class="table"  >
+      <table className="table"  >
         <thead>
           <tr>
             <th scope="col">Name</th>
@@ -73,7 +88,7 @@ function AdminDash() {
           <tr>
             <th scope="row">1</th>
             <td>Get some Coffee</td>
-            <td><button class="btn btn-sm btn-primary" >Delete</button></td>
+            <td><button className="btn btn-sm btn-primary" >Delete</button></td>
           </tr>
         </tbody>
       </table>
@@ -93,13 +108,19 @@ function AdminDash() {
                 </div>
                 <div className="">
                   <input className='form-control' type="text" id='spec' placeholder='Speciality' /><br />
+                  <select className="form-select" aria-label="Default select example" id='branch'>
+                    <option selected >Select a Branch</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                  </select>
                   <input className='btn btn-primary' type="submit" value="Submit" id='submit' />
                 </div>
               </div>
             </form>
           </div>
           <div className="modal-footer">
-            <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" className="btn btn-secondary" data-bs-dismiss="modal" id='close1'>Close</button>
           </div>
         </div>
       </div>
