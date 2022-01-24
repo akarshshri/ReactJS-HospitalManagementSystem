@@ -14,12 +14,12 @@ function AdminDash() {
   const docSubmitHandler = (e) => {
     e.preventDefault();
     var docName = document.getElementById('name').value
-    var docSpec = document.getElementById('spec').value
+    var docSpec = document.getElementById('branch').value
     let temp = arr;
     temp = JSON.parse(localStorage.getItem('doctorinfo'))
     temp.push({ name: docName, speciality: docSpec })
     localStorage.setItem('doctorinfo', JSON.stringify(temp))
-    console.log(JSON.parse(localStorage.getItem('doctorinfo')))
+    //console.log(JSON.parse(localStorage.getItem('doctorinfo')))
     updateDoc();
   }
 
@@ -38,16 +38,19 @@ function AdminDash() {
       docinfo.innerHTML = s;
     }
     document.getElementById('close1').click();
+    //console.log(document.getElementById('branch').value)
   }
+
+
 
   const branchUpdate = ()=>{
     let s = '';
     branch.map(e => (
       s += `
-      <option value="${e}">${e}</option>
+      <option defaultValue="${e}">${e}</option>
       `
       ))
-      console.log(s)
+      //console.log(s)
     document.getElementById('branch').innerHTML = s;
   }
 
@@ -107,13 +110,12 @@ function AdminDash() {
                   <input className='form-control' type="text" name="email" id="name" placeholder='Name' /><br />
                 </div>
                 <div className="">
-                  <input className='form-control' type="text" id='spec' placeholder='Speciality' /><br />
-                  <select className="form-select" aria-label="Default select example" id='branch'>
-                    <option selected >Select a Branch</option>
+                  <select className="form-select" aria-label="Default select example" id='branch' defaultValue="Select a Branch">
+                    <option >Select a Branch</option>
                     <option value="1">One</option>
                     <option value="2">Two</option>
                     <option value="3">Three</option>
-                  </select>
+                  </select><br />
                   <input className='btn btn-primary' type="submit" value="Submit" id='submit' />
                 </div>
               </div>
