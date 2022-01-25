@@ -11,7 +11,7 @@ function AdminDash() {
 
   //localStorage.setItem('doctorinfo',JSON.stringify(arr))
 
-  const docSubmitHandler = (e) => {
+  const docSubmitHandler = async (e) => {
     e.preventDefault();
     var docName = document.getElementById('name').value
     var docSpec = document.getElementById('branch').value
@@ -20,7 +20,7 @@ function AdminDash() {
     temp.push({ name: docName, speciality: docSpec })
     localStorage.setItem('doctorinfo', JSON.stringify(temp))
     //console.log(JSON.parse(localStorage.getItem('doctorinfo')))
-    updateDoc();
+    await updateDoc();
   }
 
   function updateDoc() {
@@ -37,11 +37,12 @@ function AdminDash() {
       //console.log(arr2[0].name)
       docinfo.innerHTML = s;
     }
+    
     document.getElementById('close1').click();
     //console.log(document.getElementById('branch').value)
   }
 
-
+  
 
   const branchUpdate = ()=>{
     let s = '';
@@ -52,6 +53,14 @@ function AdminDash() {
       ))
       //console.log(s)
     document.getElementById('branch').innerHTML = s;
+  }
+
+
+  const branchSubmitHandler = (e)=>{
+    e.preventDefault();
+    branch.push(document.getElementById('newBranch').value)
+    document.getElementById('close2').click();
+    branchUpdate();
   }
 
   useEffect(() => {
@@ -135,14 +144,22 @@ function AdminDash() {
       <div className="modal-dialog">
         <div className="modal-content">
           <div className="modal-header">
-            <h5 className="modal-title" id="staticBackdropLabel2">Modal title</h5>
+            <h5 className="modal-title" id="staticBackdropLabel2">Add a new Branch</h5>
             <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div className="modal-body">
-            ...
+          <form className='d-flex m-auto' onSubmit={branchSubmitHandler} style={{ width: '70%' }}>
+              <div className="col">
+                <div className="" style={{ boxSizing: 'border-box' }}>
+                  <input className='form-control' type="text" name="newBranch" id="newBranch" placeholder='Enter a Branch Name' /><br />
+                  <input className='btn btn-primary' type="submit" value="Submit" id='submit' />
+
+                </div>
+              </div>
+            </form>
           </div>
           <div className="modal-footer">
-            <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" className="btn btn-secondary" data-bs-dismiss="modal" id='close2'>Close</button>
           </div>
         </div>
       </div>
