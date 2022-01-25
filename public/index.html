@@ -40,5 +40,47 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+
+<script>
+  
+  const deleted = (index)=>{
+    let temp2 = []
+  temp2 = JSON.parse(localStorage.getItem('patinfo'));
+  temp2.splice(index,1);
+  localStorage.setItem('patinfo', JSON.stringify(temp2));
+  patUpdate();
+  }
+
+
+  const patUpdate = () => {
+    
+    let s = '';
+    var patinfo = document.getElementById('tableBody')
+    if (localStorage.getItem('patinfo') !== '[]') {
+      var arr2 = JSON.parse(localStorage.getItem('patinfo'))
+      arr2.map((e,index) => (
+        s += `<tr>
+      <th scope="row">${e.name}</th>
+      <td>${e.age}</td>
+      <td>${e.address}</td>
+      <td>${e.city}</td>
+      <td>${e.bg}</td>
+      <td>${e.covid}</td>
+      <td><button class="deletebtn btn btn-sm btn-danger" id="${index}" onclick="deleted(${index})">Delete</button></td>
+       </tr>
+       `
+      ))
+      //console.log(arr2[0].name)
+      patinfo.innerHTML = s;
+    }else{
+      patinfo = document.getElementById('doctorinfo')
+      patinfo.innerHTML = '<h4>No Patient at this moment</h4>';
+    }
+    
+    
+    //console.log(document.getElementById('branch').value)
+  }
+
+    </script>
   </body>
 </html>

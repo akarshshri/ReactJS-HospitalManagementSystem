@@ -57,7 +57,7 @@ function AdminDash() {
       ));
       //console.log(arr2[0].name)
       docinfo.innerHTML = s;
-    };
+    }
   }
 
     function updateStaff() {
@@ -173,10 +173,10 @@ function AdminDash() {
               <form className='d-flex m-auto' onSubmit={docSubmitHandler} style={{ width: '70%' }}>
                 <div className="col">
                   <div className="" style={{ boxSizing: 'border-box' }}>
-                    <input className='form-control' type="text" name="email" id="name" placeholder='Name' /><br />
+                    <input className='form-control' type="text" name="email" id="name" placeholder='Name' required/><br />
                   </div>
                   <div className="">
-                    <select className="form-select" aria-label="Default select example" id='branch' defaultValue="Select a Branch">
+                    <select className="form-select" aria-label="Default select example" id='branch' defaultValue="Oncology">
                       <option >Select a Branch</option>
                       <option value="1">One</option>
                       <option value="2">Two</option>
@@ -241,7 +241,7 @@ function AdminDash() {
                   </div>
                   <div className="">
                     <select className="form-select" aria-label="Default select example" id='staffShift' defaultValue="Morning">
-                      <option >Select a Shift</option>
+                      <option value = "Morning">Select a Shift</option>
                       <option value="Morning">Morning</option>
                       <option value="Evening">Evening</option>
                       <option value="Night">Night</option>

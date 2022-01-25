@@ -1,5 +1,17 @@
 import React, { useEffect } from 'react';
 
+const deleted = (e)=>{
+      
+  console.log(e)
+  //return 'deleted()';
+ //  let temp2 = []
+ //  temp2 = JSON.parse(localStorage.getItem('patinfo'));
+ //  temp2.splice(index,1);
+ //  localStorage.setItem('patinfo', JSON.stringify(temp2));
+ //  patUpdate();
+  
+  }
+
 function StaffDash() {
 
   var patient = [{
@@ -39,12 +51,15 @@ function StaffDash() {
     patUpdate()
   }
 
+
+
   const patUpdate = () => {
+    
     let s = '';
-    var patinfo = document.getElementById('tableBody')
-    if (localStorage.getItem('patinfo').length !== 0 || localStorage.getItem('patinfo') === null || localStorage.getItem('patinfo') === undefined) {
+    var patinfo = document.getElementById('tableBody');
+    if (localStorage.getItem('patinfo') !== '[]' ) {
       var arr2 = JSON.parse(localStorage.getItem('patinfo'))
-      arr2.map(e => (
+      arr2.map((e,index) => (
         s += `<tr>
       <th scope="row">${e.name}</th>
       <td>${e.age}</td>
@@ -52,31 +67,42 @@ function StaffDash() {
       <td>${e.city}</td>
       <td>${e.bg}</td>
       <td>${e.covid}</td>
-       </tr>`
+      <td><button class="deletebtn btn btn-sm btn-danger" id="${index}" onclick="deleted(${index})">Delete</button></td>
+       </tr>
+       `
       ))
-      //console.log(arr2[0].name)
-      patinfo.innerHTML = s;
+      console.log(document.getElementById('tableBody'))
+      document.getElementById('tableBody').innerHTML = s;
+    }else{
+      patinfo = document.getElementById('doctorinfo')
+      patinfo.innerHTML = '<h4 style="color: red; margin-top: 1rem; margin-bottom: 1rem">No Patient at this moment</h4>';
     }
-
+    
     
     //console.log(document.getElementById('branch').value)
   }
 
-
+ 
+  
+  
   useEffect(() => {
+    deleted()
     patUpdate()
     // eslint-disable-next-line react-hooks/exhaustive-deps
+
   }, []);
+
+
 
   return <div>
     <div className="container my-4">
       <div className="row">
-        <div className="col">
+        <div className="col ">
           <h3>New Patient? Click below to Register them into the System</h3>
-          <button className="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop1" >Create Patient</button><br /><br />
+          <button className="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop1" style={{marginTop: '1rem'}} >Create Patient</button><br /><br />
           <div className='container d-flex row m-auto' id='doctorinfo' style={{ border: 'grey medium solid' }}>
             <h3>Patients's Info</h3>
-            <table className="table"  >
+            <table className="table" id='table' >
               <thead>
                 <tr>
                   <th scope="col">Name</th>
@@ -85,6 +111,7 @@ function StaffDash() {
                   <th scope="col">City</th>
                   <th scope="col">Blood Group</th>
                   <th scope="col">Covid</th>
+                  <th scope="col">Action</th>
                 </tr>
               </thead>
               <tbody id="tableBody">
@@ -140,12 +167,11 @@ function StaffDash() {
             </form>
           </div>
           <div className="modal-footer">
-            <button type="button" className="btn btn-secondary" data-bs-dismiss="modal" id='close1'>Close</button>
+            <button type="button" className="btn btn-secondary" data-bs-dismiss="modal" id='close3'>Close</button>
           </div>
         </div>
       </div>
     </div>
-
   </div>;
 }
 
