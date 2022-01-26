@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 
 const deleted = (e)=>{
       
-  console.log(e)
+  //console.log(e)
   //return 'deleted()';
  //  let temp2 = []
  //  temp2 = JSON.parse(localStorage.getItem('patinfo'));
@@ -43,10 +43,8 @@ function StaffDash() {
     if (localStorage.getItem('patinfo') !== null) {
       temp = JSON.parse(localStorage.getItem('patinfo'))
     }
-    console.log(temp)
     temp.push({ name: name, age: age, address: address, city: city, bg: patBG, covid: patCovid })
     localStorage.setItem('patinfo', JSON.stringify(temp))
-    console.log(JSON.parse(localStorage.getItem('patinfo')))
     document.getElementById('close3').click();
     patUpdate()
   }
@@ -71,20 +69,14 @@ function StaffDash() {
        </tr>
        `
       ))
-      console.log(document.getElementById('tableBody'))
       document.getElementById('tableBody').innerHTML = s;
     }else{
       patinfo = document.getElementById('doctorinfo')
       patinfo.innerHTML = '<h4 style="color: red; margin-top: 1rem; margin-bottom: 1rem">No Patient at this moment</h4>';
     }
     
-    
-    //console.log(document.getElementById('branch').value)
   }
 
- 
-  
-  
   useEffect(() => {
     deleted()
     patUpdate()
@@ -102,7 +94,7 @@ function StaffDash() {
           <button className="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop1" style={{marginTop: '1rem'}} >Create Patient</button><br /><br />
           <div className='container d-flex row m-auto' id='doctorinfo' style={{ border: 'grey medium solid' }}>
             <h3>Patients's Info</h3>
-            <table className="table" id='table' >
+            <table className="table" id='table' style={{overflowX:'auto'}}>
               <thead>
                 <tr>
                   <th scope="col">Name</th>

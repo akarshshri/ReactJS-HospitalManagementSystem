@@ -10,7 +10,7 @@ function LoginForm({Login , error}) {
     }
 
   return <div className='container'>
-      <form className='d-flex m-auto' onSubmit={submitHandler} style={{ width:'70%'}}>
+      <form className='d-flex m-auto' onSubmit={submitHandler} style={{ width:'50%'}}>
           <div className="col">
           <h2>Login</h2>
           <div className="" style={{boxSizing: 'border-box'}}>
