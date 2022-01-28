@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <input type="text" id="text" >
+<button  onclick='myfunc()'>
+submit
+</button>
+
+    <script>
+
+        const myfunc = () => {
+            let result = null;
+            let value = document.getElementById('text').value
+            let a = value.split('[');
+            let b = value.split(']');
+            if(a.length === b.length){
+
+                // for(var i =0;i<value.length;i++){
+                //    if( value.charAt(i) === '['){
+                //        a = value.charAt(i);
+                //        for(var u = 0; u<value.length; u++){
+                //             if(value.charAt(u) === ']' && u>i){
+                //                 console.log('valid')
+                //             }else{
+                //                 console.log('Invalid')
+                                
+                //             }
+                //        }
+                //    }
+                // }
+
+                result = 'true'
+
+            }else{
+                result = 'False'
+                
+            }
+            a = null;
+            b = null;
+            //[ [ ] ] [ ] [ ] [ ] [ [ ] ]
+            //]]][[[
+            //[[][][][]]
+
+            console.log(result)
+        }
+    </script>
+</body>
+
+</html>
